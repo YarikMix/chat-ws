@@ -31,7 +31,7 @@ app.post('/receive', (req, res) => {
     const message = req.body;
     console.log(message)
 
-    if (message.error) {
+    if (message.error && messages[message.time]) {
         const [client, data] = messages[message.time];
         if (client) {
             client.emit("message", data);
